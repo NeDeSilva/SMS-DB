@@ -1,16 +1,13 @@
-CREATE DATABASE ExpressAF;
+-- check if database exist before creation
+-- UTF-8 encoding for full Unicord support
 
-/*
--- Create a new database called 'ExpressAF'
--- Connect to the 'master' database to run this snippet
-USE master
-GO
--- Create the new database if it does not exist already
 IF NOT EXISTS (
-    SELECT name
-        FROM sys.databases
-        WHERE name = N'ExpressAF'
+    SELECT 1
+    FROM sys.database
+    WHERE name = N'solarPower'
 )
-CREATE DATABASE ExpressAF
+BEGIN
+    CREATE DATABASE solarPower
+    COLLATE Latin1_General_100_BIN2_UTF8;
+END;
 GO
-*/
