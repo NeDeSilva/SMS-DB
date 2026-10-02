@@ -1,21 +1,37 @@
--- Create roles
+USE SENNON_ENERGY;
+GO
 
-CREATE ROLE Admin;
-CREATE ROLE Manager;
-CREATE ROLE Employee;
+-- 1. Create Database Roles
+CREATE ROLE AdminRole;
+CREATE ROLE ManagerRole;
+CREATE ROLE EmployeeRole;
+GO
 
--- Grant Permissions
+-- 2. Grant Permissions on the default schema (dbo)
+-- Admin permissions
+GRANT CONTROL TO AdminRole;
 
-GRANT ALL PRIVILEGES ON DATABASE sms_db TO Admin;
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO Manager;
-GRANT SELECT ON ALL TABLES IN SCHEMA public TO Employee;
+-- Manager permissions
+GRANT SELECT, INSERT, UPDATE, DELETE ON SCHEMA::dbo TO ManagerRole;
 
--- create user accounts
+-- Employee permissions
+GRANT SELECT ON SCHEMA::dbo TO EmployeeRole;
+GO
 
-CREATE USER admin_user WITH PASSWORD '12345678';
-CREATE USER manager_user WITH PASSWORD '12345';
-CREATE USER employee_user WITH PASSWORD '123';
+-- 3. Create Server Logins (Authentication Level)
+CREATE LOGIN admin_user WITH PASSWORD = 'StrongAdminPassword123!';
+CREATE LOGIN manager_user WITH PASSWORD = 'StrongManagerPassword123!';
+CREATE LOGIN employee_user WITH PASSWORD = 'StrongEmployeePassword123!';
+GO
 
-GRANT Admin TO admin_user;
-GRANT Manager TO manager_user;
-GRANT Employee TO employee_user;
+-- 4. Create Database Users (Database Level)
+CREATE USER admin_user FOR LOGIN admin_user;
+CREATE USER manager_user FOR LOGIN manager_user;
+CREATE USER employee_user FOR LOGIN employee_user;
+GO
+
+-- 5. Add Users as Members of Database Roles
+ALTER ROLE AdminRole ADD MEMBER admin_user;
+ALTER ROLE ManagerRole ADD MEMBER manager_user;
+ALTER ROLE EmployeeRole ADD MEMBER employee_user;
+GO
