@@ -1,3 +1,5 @@
+
+
 -- 1. Customer
 CREATE TABLE Customer (
     Cus_ID VARCHAR(50) PRIMARY KEY,
