@@ -79,7 +79,7 @@ SELECT
     s.Name AS Solar_System_Name,
     s.Type AS System_Type,
     s.Price
-FROM `Order` o
+FROM [Order] o
 JOIN Customer c ON o.Cus_ID = c.Cus_ID
 JOIN Solar_System s ON o.Sys_ID = s.Sys_code
 ORDER BY o.Date DESC;

@@ -63,7 +63,7 @@ CREATE TABLE Activity (
 );
 
 -- 7. Order
-CREATE TABLE `Order` (
+CREATE TABLE [Order] (
     Order_ID VARCHAR(50) PRIMARY KEY,
     Date DATE,
     Cus_ID VARCHAR(50),
@@ -115,5 +115,5 @@ CREATE TABLE Installment (
     Warrenty VARCHAR(50),
     Order_ID VARCHAR(50),
     FOREIGN KEY (Emp_ID) REFERENCES Employee(Emp_ID),
-    FOREIGN KEY (Order_ID) REFERENCES `Order`(Order_ID)
+    FOREIGN KEY (Order_ID) REFERENCES [Order](Order_ID)
 );
