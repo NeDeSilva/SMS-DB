@@ -105,7 +105,7 @@ INSERT INTO Activity (Sys_code, Date, Time, Flag, Wattage) VALUES
 ('SYS008', '2026-10-02', '16:00:00', 'Warning', '18500W');
 
 -- 7. Insert into Order
-INSERT INTO `Order` (Order_ID, Date, Cus_ID, Sys_ID) VALUES
+INSERT INTO [Order] (Order_ID, Date, Cus_ID, Sys_ID) VALUES
 ('ORD001', '2026-09-01', 'CUS001', 'SYS001'),
 ('ORD002', '2026-09-03', 'CUS002', 'SYS002'),
 ('ORD003', '2026-09-05', 'CUS003', 'SYS004'),
